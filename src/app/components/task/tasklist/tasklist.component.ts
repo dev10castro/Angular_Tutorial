@@ -22,7 +22,17 @@ export class TasklistComponent {
     new Task(9, "Configurar notificaciones", "Configurar sistema de notificaciones push", TaskPriority.LOW, TaskStatus.IN_PROGRESS, new Date("2024-09-30"), new Date("2024-10-15"), false),
     new Task(10, "Desplegar en producción", "Realizar el despliegue de la aplicación", TaskPriority.HIGH, TaskStatus.COMPLETED, new Date("2024-10-05"), new Date("2024-10-25"), false),
   ];
-}
+
   
+  changeStatus(){
+    
+  }
+
+  deleteTask(taskId:number){
+    this.taskList = this.taskList.filter((tarea:Task)=>{
+      return tarea.id != taskId;
+    });
+}
+}
  
 

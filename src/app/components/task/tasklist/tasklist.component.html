@@ -15,8 +15,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
                     <tr *ngFor="let task of taskList">
                         <ng-container *ngIf="!task.isDelete">
                             <th scope="row">{{ task.id }}</th>
@@ -29,7 +27,7 @@
                               }">
                                 <!--Iconos de flechas-->
                                 <i *ngIf="(task.priority === 'M' || task.priority === 'L') && task.status !== 'C'"
-                                    class="bi bi-arrow-up-circle-fill"></i>
+                                    class="bi bi-arrow-up-circle-fill" ></i>
                                 <i *ngIf="(task.priority === 'H' || task.priority === 'M') && task.status !== 'C'"
                                     class="bi bi-arrow-down-circle-fill"></i>
 
@@ -46,24 +44,22 @@
                                 'table-success': task.status === 'C'
                               }" [ngSwitch]="task.status">
                                 <span *ngSwitchCase="'C'">
-                                    <a class="bi bi-arrow-return-right"></a>Completada
+                                    <i class="bi bi-arrow-return-right"></i>Completada
                                 </span>
                                 <span *ngSwitchCase="'IP'">
-                                    <a class="bi bi-check-lg"></a>En proceso
+                                    <i class="bi bi-check-lg"></i>En proceso
                                 </span>
                                 <span *ngSwitchCase="'P'">
-                                    <a class="bi bi-play-fill"></a>Pendiente
+                                    <i class="bi bi-play-fill"></i>Pendiente
                                 </span>
                             </td>
                             <td>{{ task.expirationDate }}</td>
-                            <td>
-                                <a class="bi bi-pencil-square"></a>
-                                <a class="bi bi-trash"></a>
+                            <td class="d-flex justify-content-center">
+                                <i class="bi bi-pencil-square" ></i>
+                                <i class="bi bi-trash" (click)="deleteTask(task.id)"></i>
                             </td>
                         </ng-container>
                     </tr>
-
-
                 </tbody>
             </table>
         </div>
