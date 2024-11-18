@@ -13,7 +13,7 @@ import { TasklistComponent } from "./components/task/tasklist/tasklist.component
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'David Castro';
+  title = 'David Castro Soriano';
 
   
 }
