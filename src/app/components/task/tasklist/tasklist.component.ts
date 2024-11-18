@@ -25,7 +25,7 @@ export class TasklistComponent {
 
   
   changeStatus(){
-    
+    this.taskList
   }
 
   deleteTask(taskId:number){
