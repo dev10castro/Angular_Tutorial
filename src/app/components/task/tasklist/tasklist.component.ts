@@ -24,15 +24,65 @@ export class TasklistComponent {
   ];
 
   
-  changeStatus(){
-    this.taskList
+  changeStatus(taskId: number): void {
+    const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
+    if (task) {
+      switch (task.status) {
+        case TaskStatus.PENDING:
+          task.status = TaskStatus.IN_PROGRESS;
+          break;
+        case TaskStatus.IN_PROGRESS:
+          task.status = TaskStatus.COMPLETED;
+          break;
+        case TaskStatus.COMPLETED:
+          task.status = TaskStatus.PENDING;
+          break;
+      }
+    }
   }
+
+  changePriorityDown(taskId: number): void {
+    const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
+    if (task) {
+      switch (task.priority) {
+        case TaskPriority.HIGH:
+          task.priority = TaskPriority.MEDIUM;
+          break;
+        case TaskPriority.MEDIUM:
+          task.priority = TaskPriority.LOW;
+          break;
+        case TaskPriority.LOW:
+          task.priority = TaskPriority.HIGH;
+          break;
+      }
+    }
+  }
+
+  changePriorityUp(taskId: number): void {
+    const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
+    if (task) {
+      switch (task.priority) {
+        case TaskPriority.HIGH:
+          task.priority = TaskPriority.LOW;
+          break;
+        case TaskPriority.MEDIUM:
+          task.priority = TaskPriority.HIGH;
+          break;
+        case TaskPriority.LOW:
+          task.priority = TaskPriority.MEDIUM;
+          break;
+      }
+    }
+  }
+  
+  
 
   deleteTask(taskId:number){
     this.taskList = this.taskList.filter((tarea:Task)=>{
       return tarea.id != taskId;
     });
+  }
 }
-}
+
  
 

@@ -27,9 +27,9 @@
                               }">
                                 <!--Iconos de flechas-->
                                 <i *ngIf="(task.priority === 'M' || task.priority === 'L') && task.status !== 'C'"
-                                    class="bi bi-arrow-up-circle-fill" ></i>
+                                    class="bi bi-arrow-up-circle-fill" (click)="changePriorityUp(task.id)"></i>
                                 <i *ngIf="(task.priority === 'H' || task.priority === 'M') && task.status !== 'C'"
-                                    class="bi bi-arrow-down-circle-fill"></i>
+                                    class="bi bi-arrow-down-circle-fill" (click)="changePriorityDown(task.id)" ></i>
 
                                 <ng-container [ngSwitch]="task.priority">
                                     <span *ngSwitchCase="'H'">Alta</span>
@@ -44,19 +44,20 @@
                                 'table-success': task.status === 'C'
                               }" [ngSwitch]="task.status">
                                 <span *ngSwitchCase="'C'">
-                                    <i class="bi bi-arrow-return-right"></i>Completada
+                                    <i class="bi bi-arrow-return-right" (click)="changeStatus(task.id)"></i>Completada
                                 </span>
                                 <span *ngSwitchCase="'IP'">
-                                    <i class="bi bi-check-lg"></i>En proceso
+                                    <i class="bi bi-check-lg" (click)="changeStatus(task.id)"></i>En proceso
                                 </span>
                                 <span *ngSwitchCase="'P'">
-                                    <i class="bi bi-play-fill"></i>Pendiente
+                                    <i class="bi bi-play-fill" (click)="changeStatus(task.id)"></i>Pendiente
                                 </span>
                             </td>
                             <td>{{ task.expirationDate }}</td>
                             <td class="d-flex justify-content-center">
-                                <i class="bi bi-pencil-square" ></i>
-                                <i class="bi bi-trash" (click)="deleteTask(task.id)"></i>
+                               <button> <i class="bi bi-pencil-square" ></i>
+                                </button>
+                               <button><i class="bi bi-trash" (click)="deleteTask(task.id)"></i></button>
                             </td>
                         </ng-container>
                     </tr>
