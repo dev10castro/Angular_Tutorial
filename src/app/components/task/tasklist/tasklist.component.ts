@@ -24,7 +24,7 @@ export class TasklistComponent {
   ];
 
   
-  changeStatus(taskId: number): void {
+  changeStatus(taskId: number){
     const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
     if (task) {
       switch (task.status) {
@@ -41,7 +41,7 @@ export class TasklistComponent {
     }
   }
 
-  changePriorityDown(taskId: number): void {
+  changePriorityDown(taskId: number){
     const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
     if (task) {
       switch (task.priority) {
@@ -58,7 +58,7 @@ export class TasklistComponent {
     }
   }
 
-  changePriorityUp(taskId: number): void {
+  changePriorityUp(taskId: number){
     const task = this.taskList.find(t => t.id === taskId); // Encuentra la tarea por su ID
     if (task) {
       switch (task.priority) {
