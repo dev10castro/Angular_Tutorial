@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Task, TaskPriority, TaskStatus } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
+import { ResumeComponent } from "../resume/resume.component";
+import { TaskEvent } from '../../models/TaskEvent.model';
 
 @Component({
   selector: 'app-tasklist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ResumeComponent],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
@@ -23,6 +25,23 @@ export class TasklistComponent {
     new Task(10, "Desplegar en producción", "Realizar el despliegue de la aplicación", TaskPriority.HIGH, TaskStatus.COMPLETED, new Date("2024-10-05"), new Date("2024-10-25"), false),
   ];
 
+
+  modifyTask(taskEvent: TaskEvent) {
+    switch (taskEvent.action) {
+      case "changePriorityUp":
+        this.changePriorityUp(taskEvent.taskId);
+        break;
+      case "changeStatus":
+        this.changeStatus(taskEvent.taskId);
+        break;
+      case "changePriorityDown":
+        this.changePriorityDown(taskEvent.taskId);
+        break;
+      case "deleteTask":
+        this.deleteTask(taskEvent.taskId);
+        break;
+    }
+  }
   
   changeStatus(taskId: number){
     const task = this.taskList.find(task => task.id === taskId); // Encuentra la tarea por su ID
