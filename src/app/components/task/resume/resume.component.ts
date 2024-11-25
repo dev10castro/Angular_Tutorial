@@ -24,21 +24,14 @@ eventTaskModify = new EventEmitter<TaskEvent>();
 changeStatus(taskId: number){
   this.eventTaskModify.emit(new TaskEvent("changeStatus",taskId));
     }
-  
-
 
 changePriorityDown(taskId: number){
   this.eventTaskModify.emit(new TaskEvent("changePriorityDown",taskId));
     }
-  
-
 
 changePriorityUp(taskId: number){
   this.eventTaskModify.emit(new TaskEvent("changePriorityUp",taskId));
     }
-  
-
-
 
 deleteTask(taskId:number){
   this.eventTaskModify.emit(new TaskEvent("deleteTask",taskId));
