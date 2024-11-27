@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {customValidator, customvalidatorPriority} from './taskform.validators';
 
 @Component({
   selector: 'app-taskform',
@@ -16,29 +17,25 @@ export class TaskformComponent {
   constructor(formBuilder:FormBuilder){
     this.formTaskEdit = formBuilder.group({
 
-      'name': ['',[Validators.required]],
-      'description': ['',[Validators.required]],
-      'priority': ['',[Validators.required]],
-      'expireDate': ['',[Validators.required]]
+      'name': ['',[Validators.required,Validators.maxLength(50),Validators.minLength(5)]],
+      'description': ['',[Validators.required,Validators.maxLength(250)]],
+      'priority': ['',[Validators.required,customvalidatorPriority()]],
+      'expireDate': ['',[Validators.required,customValidator()]]
     });
   }
 
 
    onsubmit():void {
 
-    this.formTaskEdit.value
-    this.formTaskEdit.get("name")?.value
-    this.formTaskEdit.valid
-
     if(this.formTaskEdit.valid){
       console.log();
     }else{
-      console.log(`Formulario con erroees y voy a mostrar los errores ${this.formTaskEdit.get('name')?.errors}`)
+      console.log(`Formulario con errores y voy a mostrar los errores ${this.formTaskEdit.get('name')?.errors}`)
     }
 
     console.log(this.formTaskEdit.value)
 
-    
+
   }
 
 }
