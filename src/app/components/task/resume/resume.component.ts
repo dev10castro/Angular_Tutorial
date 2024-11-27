@@ -14,11 +14,14 @@ import { TaskEvent } from '../../models/TaskEvent.model';
 export class ResumeComponent {
 [x: string]: any;
 
-@Input()  
+@Input()
 taskInput: Task= new Task(4, "Actualizar documentación", "Revisar y actualizar la documentación", TaskPriority.LOW, TaskStatus.PENDING, new Date("2024-11-05"), new Date("2024-11-15"), false);
 
 @Output()
 eventTaskModify = new EventEmitter<TaskEvent>();
+
+@Output()
+editTask= new EventEmitter<Task>();
 
 
 changeStatus(taskId: number){
@@ -37,7 +40,9 @@ deleteTask(taskId:number){
   this.eventTaskModify.emit(new TaskEvent("deleteTask",taskId));
 }
 
-
+onEditTask(){
+  this.editTask.emit(this.taskInput)
+}
 
 
 }

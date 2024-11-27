@@ -28,6 +28,7 @@ export class TasklistComponent {
   ];
 
 
+
   modifyTask(taskEvent: TaskEvent) {
     switch (taskEvent.action) {
       case "changePriorityUp":
@@ -103,6 +104,7 @@ export class TasklistComponent {
       return tarea.id != taskId;
     });
   }
+
 
   addTask(task:Task){
     this.taskList.push(task);

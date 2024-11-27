@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, output, Output, SimpleChanges} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
@@ -16,6 +16,7 @@ export class TaskformComponent {
   @Output()
   taskCreated: EventEmitter<Task> = new EventEmitter<Task>(); // Emisor de eventos
 
+
   formTaskEdit: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
@@ -29,7 +30,6 @@ export class TaskformComponent {
   }
 
   onsubmit(): void {
-
     if (this.formTaskEdit.valid) {
       console.log('Formulario correcto y creamos nueva tarea')
       if (this.formTaskEdit.valid) {
@@ -63,4 +63,15 @@ export class TaskformComponent {
     }
 
   }
+
+  loadTaskIntoForm(task: Task): void {
+    this.formTaskEdit.patchValue({
+      name: task.name,
+      description: task.description,
+      priority: task.priority,
+      expireDate: task.expirationDate.toISOString().slice(0, 16), // Ajustar para datetime-local
+    });
+  }
+
+
 }

@@ -8,7 +8,7 @@ import {FormsModule} from '@angular/forms'
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, TasklistComponent,FormsModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent,FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,14 +17,14 @@ export class AppComponent {
   imagenaleatoria:string="";
   nombre:string=""
   numero:number=0;
-  
+
 
 
   muestraimagenaleatoria(){
     let num:number = Math.trunc((Math.random()*1000)+100);
     this.imagenaleatoria="https://picsum.photos/200/300?random="+num;
   }
-  
+
 }
 
 
