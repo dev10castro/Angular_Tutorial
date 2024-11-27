@@ -44,7 +44,7 @@ export class TasklistComponent {
         break;
     }
   }
-  
+
   changeStatus(taskId: number){
     const task = this.taskList.find(task => task.id === taskId); // Encuentra la tarea por su ID
     if (task) {
@@ -95,15 +95,22 @@ export class TasklistComponent {
       }
     }
   }
-  
-  
+
+
 
   deleteTask(taskId:number){
     this.taskList = this.taskList.filter((tarea:Task)=>{
       return tarea.id != taskId;
     });
   }
+
+  addTask(task:Task){
+    this.taskList.push(task);
+    console.log('Nueva tarea añadida:', task);
+
+  }
+
 }
 
- 
+
 
