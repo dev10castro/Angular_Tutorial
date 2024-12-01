@@ -1,8 +1,7 @@
-import { Component, Input, Output } from '@angular/core';
-import { Task, TaskPriority, TaskStatus } from '../../models/task.model';
-import { CommonModule } from '@angular/common';
-import { EventEmitter } from '@angular/core';
-import { TaskEvent } from '../../models/TaskEvent.model';
+import {Component, Input} from '@angular/core';
+import {Task} from '../../models/task.model';
+import {CommonModule} from '@angular/common';
+import {TaskService} from '../../../service/task.service';
 
 @Component({
   selector: 'app-resume',
@@ -15,35 +14,27 @@ export class ResumeComponent {
 [x: string]: any;
 
 @Input()
-taskInput: Task= new Task(4, "Actualizar documentación", "Revisar y actualizar la documentación", TaskPriority.LOW, TaskStatus.PENDING, new Date("2024-11-05"), new Date("2024-11-15"), false);
+taskInput!:Task;
 
-@Output()
-eventTaskModify = new EventEmitter<TaskEvent>();
-
-@Output()
-editTask= new EventEmitter<Task>();
+constructor(private taskService: TaskService) {
+}
 
 
 changeStatus(taskId: number){
-  this.eventTaskModify.emit(new TaskEvent("changeStatus",taskId));
+  this.taskService.changeStatus(taskId);
     }
 
 changePriorityDown(taskId: number){
-  this.eventTaskModify.emit(new TaskEvent("changePriorityDown",taskId));
+  this.taskService.changePriorityDown(taskId);
     }
 
 changePriorityUp(taskId: number){
-  this.eventTaskModify.emit(new TaskEvent("changePriorityUp",taskId));
+  this.taskService.changePriorityUp(taskId);
     }
 
 deleteTask(taskId:number){
-  this.eventTaskModify.emit(new TaskEvent("deleteTask",taskId));
+  this.taskService.deleteTask(taskId);
 }
-
-onEditTask(){
-  this.editTask.emit(this.taskInput)
-}
-
 
 }
 

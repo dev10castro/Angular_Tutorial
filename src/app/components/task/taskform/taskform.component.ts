@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import {Component, EventEmitter, Input, OnChanges, OnInit, output, Output, SimpleChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
 import {ActivatedRoute} from '@angular/router';
+import {TaskService} from '../../../service/task.service';
 
 @Component({
   selector: 'app-taskform',
@@ -12,15 +13,11 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './taskform.component.html',
   styleUrl: './taskform.component.css'
 })
-export class TaskformComponent implements OnInit{
-
-  @Output()
-  taskCreated: EventEmitter<Task> = new EventEmitter<Task>(); // Emisor de eventos
-
+export class TaskformComponent {
 
   formTaskEdit: FormGroup;
 
-  constructor(formBuilder: FormBuilder,private route : ActivatedRoute) {
+  constructor(formBuilder: FormBuilder,private taskService:TaskService) {
     this.formTaskEdit = formBuilder.group({
 
       'name': ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
@@ -48,11 +45,11 @@ export class TaskformComponent implements OnInit{
 
         // Crear nueva instancia de Task
         let newTask = new Task(id, name, description, priority, status, creationDate, expirationDate, idDelete);
+        this.taskService.addTask(newTask);
+
 
         // añadimos la tarea a la lista de tareas
         console.log(newTask);
-
-        this.taskCreated.emit(newTask);
 
         this.formTaskEdit.reset();
 
@@ -65,21 +62,7 @@ export class TaskformComponent implements OnInit{
 
   }
 
-  loadTaskIntoForm(task: Task): void {
-    this.formTaskEdit.patchValue({
-      name: task.name,
-      description: task.description,
-      priority: task.priority,
-      expireDate: task.expirationDate.toISOString().slice(0, 16), // Ajustar para datetime-local
-    });
-  }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      let id = params.get('id');
-      console.log(id);
-    })
-  }
 
 
 }
