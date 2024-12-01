@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {Component, EventEmitter, Input, OnChanges, output, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, output, Output, SimpleChanges} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-taskform',
@@ -11,7 +12,7 @@ import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
   templateUrl: './taskform.component.html',
   styleUrl: './taskform.component.css'
 })
-export class TaskformComponent {
+export class TaskformComponent implements OnInit{
 
   @Output()
   taskCreated: EventEmitter<Task> = new EventEmitter<Task>(); // Emisor de eventos
@@ -19,7 +20,7 @@ export class TaskformComponent {
 
   formTaskEdit: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder,private route : ActivatedRoute) {
     this.formTaskEdit = formBuilder.group({
 
       'name': ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
@@ -71,6 +72,13 @@ export class TaskformComponent {
       priority: task.priority,
       expireDate: task.expirationDate.toISOString().slice(0, 16), // Ajustar para datetime-local
     });
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      console.log(id);
+    })
   }
 
 
