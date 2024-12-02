@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
-import {Component} from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
-import {ActivatedRoute} from '@angular/router';
 import {TaskService} from '../../../service/task.service';
 
 @Component({
@@ -13,9 +12,12 @@ import {TaskService} from '../../../service/task.service';
   templateUrl: './taskform.component.html',
   styleUrl: './taskform.component.css'
 })
-export class TaskformComponent {
+export class TaskformComponent implements OnChanges{
 
   formTaskEdit: FormGroup;
+
+  @Input()
+  taskInput:Task | null=null;
 
   constructor(formBuilder: FormBuilder,private taskService:TaskService) {
     this.formTaskEdit = formBuilder.group({
@@ -60,6 +62,12 @@ export class TaskformComponent {
 
     }
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['taskInput']) {
+      console.log(this.taskInput)
+    }
   }
 
 

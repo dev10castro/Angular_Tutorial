@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Task} from '../../models/task.model';
 import {CommonModule} from '@angular/common';
 import {TaskService} from '../../../service/task.service';
@@ -15,6 +15,10 @@ export class ResumeComponent {
 
 @Input()
 taskInput!:Task;
+
+
+@Output()
+eventEditTask=new EventEmitter<Task>();
 
 constructor(private taskService: TaskService) {
 }
@@ -34,6 +38,12 @@ changePriorityUp(taskId: number){
 
 deleteTask(taskId:number){
   this.taskService.deleteTask(taskId);
+}
+
+editTask(taskId:number):void{
+
+  let task = this.taskService.getTask(taskId)[0];
+  this.eventEditTask.emit(task);
 }
 
 }

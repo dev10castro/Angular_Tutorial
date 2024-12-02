@@ -24,7 +24,6 @@ export class TaskService {
   constructor() { }
 
 
-
   getTasks(): Task[] {
     return this.taskList;
   }
@@ -104,14 +103,15 @@ export class TaskService {
     }
   }
 
-
   addTask(task:Task){
     this.taskList.push(task);
     console.log('Nueva tarea añadida:', task);
-
   }
 
-
-
+  getTask(taskId:number){
+   return this.taskList.filter((task1:Task)=>{
+      return taskId==task1.id;
+    })
+  }
 
 }

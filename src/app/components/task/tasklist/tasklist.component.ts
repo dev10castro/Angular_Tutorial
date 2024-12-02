@@ -18,6 +18,9 @@ export class TasklistComponent implements OnInit{
 
   tasks: Task[] = [];
 
+  taskOutput:Task|null=null;
+
+
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
@@ -26,6 +29,12 @@ export class TasklistComponent implements OnInit{
 
   loadTasks(): void {
     this.tasks = this.taskService.getTasks(); // Sincroniza la lista con el servicio
+  }
+
+  editTask(task:Task){
+
+    let task1 :Task = task;
+    this.taskOutput=task1;
   }
 
 }
