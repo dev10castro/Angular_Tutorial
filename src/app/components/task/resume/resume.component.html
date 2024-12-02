@@ -30,8 +30,8 @@
             </li>
             <li class="list-group-item">Expira: {{taskInput.expirationDate}}</li>
             <li class="list-group-item">
-              <button type="button" class="btn btn-secondary">
-                <i class="bi bi-pencil-square" (click)="editTask(taskInput.id)"></i>
+              <button type="button" class="btn btn-secondary" (click)="editTask(taskInput.id)">
+                <i class="bi bi-pencil-square" ></i>
                 Editar
               </button>
               <button type="button" class="btn btn-secondary" (click)="deleteTask(taskInput.id)">

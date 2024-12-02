@@ -67,6 +67,19 @@ export class TaskformComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['taskInput']) {
       console.log(this.taskInput)
+
+      if(this.taskInput!=null){
+
+        this.formTaskEdit.setValue({
+
+          name:this.taskInput.name,
+          description:this.taskInput.description,
+          priority:this.taskInput.priority,
+          expireDate: this.taskInput.expirationDate.toISOString().slice(0, 16),
+
+        })
+      }
+
     }
   }
 
