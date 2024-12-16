@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
         messagingSenderId: "142953094248",
         appId: "1:142953094248:web:7236b7dce8c0fd95172fdd"
     })),
-    provideAuth(() => getAuth()), provideFirebaseApp(() => initializeApp({"projectId":"task-firebase-ea361","appId":"1:142953094248:web:7236b7dce8c0fd95172fdd","storageBucket":"task-firebase-ea361.firebasestorage.app","apiKey":"AIzaSyDcAflq3xPL45chkWr4t4m9_SRF-to_LnE","authDomain":"task-firebase-ea361.firebaseapp.com","messagingSenderId":"142953094248"})), provideAuth(() => getAuth())
+    provideAuth(() => getAuth()), provideFirebaseApp(() => initializeApp({"projectId":"task-firebase-ea361","appId":"1:142953094248:web:7236b7dce8c0fd95172fdd","storageBucket":"task-firebase-ea361.firebasestorage.app","apiKey":"AIzaSyDcAflq3xPL45chkWr4t4m9_SRF-to_LnE","authDomain":"task-firebase-ea361.firebaseapp.com","messagingSenderId":"142953094248"})), provideAuth(() => getAuth()), provideFirebaseApp(() => initializeApp({"projectId":"task-firebase-ea361","appId":"1:142953094248:web:7236b7dce8c0fd95172fdd","storageBucket":"task-firebase-ea361.firebasestorage.app","apiKey":"AIzaSyDcAflq3xPL45chkWr4t4m9_SRF-to_LnE","authDomain":"task-firebase-ea361.firebaseapp.com","messagingSenderId":"142953094248"})), provideAuth(() => getAuth())
   ]
 };

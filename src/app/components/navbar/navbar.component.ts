@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,22 @@ import {Router, RouterLink} from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
 
-  constructor(private router:Router) {
+  isAuthenticated: boolean = false;
+
+  constructor(private router: Router, private servicelog: AuthService) {
+
   }
 
-  redirectTo(){
-    this.router.navigate(['/notfound'])
+  ngOnInit(): void {
+    this.isAuthenticated = this.servicelog.isAuthenticated;
+  }
+
+
+  logout(){
+    this.servicelog.logout().then( () => this.router.navigate(['/login']))
+      .catch(error=>console.log(error))
+
   }
 }
