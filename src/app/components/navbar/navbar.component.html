@@ -9,7 +9,7 @@
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
         <li class="nav-item" *ngIf="!isAuthenticated">
-          <a class="nav-link" routerLink="/singin">Singin</a>
+          <a class="nav-link" routerLink="/signin">Signin</a>
         </li>
         <li class="nav-item">
         <li class="nav-item active" *ngIf="isAuthenticated">
@@ -28,7 +28,7 @@
           </ul>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" (click)="logout()" *ngIf="isAuthenticated">SignOut</a>
+          <a class="nav-link" (click)="logout()" role="button" routerLink="/signin" *ngIf="isAuthenticated">SignOut</a>
         </li>
 
       </ul>

@@ -34,8 +34,11 @@ export class LoginComponent{
       this.loginservice.login(this.formLogin.value)
         .then(response => this.router.navigate(['/home']))
         .catch(error => console.log(error))
+
+      console.log(this.loginservice.isAuthenticated)
     } else {
       console.log("El login es invalido")
+
     }
   }
 
@@ -43,6 +46,7 @@ export class LoginComponent{
     this.loginservice.loginWithGoogle()
       .then(response => this.router.navigate(['/home']))
       .catch(error => console.log(error));
+
   }
 
 }
