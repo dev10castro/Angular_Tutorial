@@ -5,10 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --configuration production --base-href /Angular_Tutorial/",
+    "build:prod": "ng build --configuration production --base-href /Angular-Tutorial/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular_tutorial": "node dist/angular_tutorial/server.mjs"
+    "serve:ssr:angular_tutorial": "node dist/angular-tutorial/server.mjs"
   },
   "private": true,
   "dependencies": {
