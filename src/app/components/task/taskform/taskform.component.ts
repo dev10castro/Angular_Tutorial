@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
 import {TaskService} from '../../../service/task.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-taskform',
@@ -19,6 +20,8 @@ export class TaskformComponent implements OnChanges{
   @Input()
   taskInput:Task | null=null;
 
+
+
   constructor(formBuilder: FormBuilder,private taskService:TaskService) {
     this.formTaskEdit = formBuilder.group({
 
@@ -28,6 +31,8 @@ export class TaskformComponent implements OnChanges{
       'expireDate': ['', [Validators.required, customValidator()]]
     });
   }
+
+
 
   onsubmit(): void {
     if (this.formTaskEdit.valid) {
