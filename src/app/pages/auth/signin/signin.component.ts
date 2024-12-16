@@ -26,7 +26,7 @@ export class SigninComponent {
 
   constructor(private formBuilder: FormBuilder, private registerservice: AuthService, private router: Router) {
     this.formSignin = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],

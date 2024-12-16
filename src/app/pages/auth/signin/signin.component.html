@@ -9,7 +9,7 @@
     <div class="invalid-feedback" *ngIf="formSignin.get('name')?.invalid && formSignin.get('name')?.touched">
       <small *ngIf="formSignin.get('name')?.hasError('required')">El nombre es obligatorio.</small>
       <small *ngIf="formSignin.get('name')?.hasError('maxlength')">nombre demasiado largo</small>
-      <small *ngIf="formSignin.get('name')?.hasError('minlength')">nombre demasiado corto</small>
+
     </div>
   </div>
 
