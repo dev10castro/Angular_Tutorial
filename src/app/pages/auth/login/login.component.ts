@@ -37,7 +37,6 @@ export class LoginComponent{
 
       console.log(this.loginservice.isAuthenticated)
     } else {
-      console.log("El login es invalido")
 
     }
   }

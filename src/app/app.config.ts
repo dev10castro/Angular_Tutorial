@@ -14,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     initializeApp({
         apiKey: "AIzaSyDcAflq3xPL45chkWr4t4m9_SRF-to_LnE",
         authDomain: "task-firebase-ea361.firebaseapp.com",
+        databaseURL: "https://task-firebase-ea361-default-rtdb.europe-west1.firebasedatabase.app",
         projectId: "task-firebase-ea361",
         storageBucket: "task-firebase-ea361.firebasestorage.app",
         messagingSenderId: "142953094248",

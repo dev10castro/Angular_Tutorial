@@ -14,13 +14,13 @@ export class Task {
     id:number;
     name:string;
     description:string;
-    priority:TaskPriority;
-    status:TaskStatus;
-    creationDate:Date;
-    expirationDate:Date;
+    priority:string;
+    status:string;
+    creationDate:string;
+    expirationDate:string;
     isDelete:boolean;
 
-    constructor (id:number,name:string,description:string,priority:TaskPriority,status:TaskStatus,creationDate:Date,expirationDate:Date,isDelete:boolean){
+    constructor (id:number,name:string,description:string,priority:TaskPriority,status:TaskStatus,creationDate:string,expirationDate:string,isDelete:boolean){
         this.id = id;
         this.name = name;
         this.description=description;
@@ -33,38 +33,39 @@ export class Task {
 
 
 
-    getStatusText():string{
-        let text="";
-        switch(this.status){
-            case "IP": text="En proceso";break;
-            case "C": text="Realizada"; break;
-            case "P": text="Pendiente";break;
-        }
-        return text;
+  getStatusText(): string {
+    switch (this.status) {
+      case TaskStatus.COMPLETED: return 'Completed';
+      case TaskStatus.IN_PROGRESS: return 'In Progress';
+      case TaskStatus.PENDING: return 'Pending';
+      default: return 'Unknown';
     }
+  }
 
-    getPriorityText():string{
-        switch(this.priority){
-            case "H": return "Alta";break;
-            case "M": return "Media"; break;
-            case "L": return "Baja";break;
-            default: return "";
-        }
+  getPriorityText(): string {
+    switch (this.priority) {
+      case TaskPriority.HIGH: return 'Alta';
+      case TaskPriority.MEDIUM: return 'Media';
+      case TaskPriority.LOW: return 'Baja';
+      default: return '';
     }
-    
-    raisePriority(){
-        switch(this.priority){
-          case TaskPriority.LOW: this.priority=TaskPriority.MEDIUM;break;
-          case TaskPriority.MEDIUM: this.priority=TaskPriority.HIGH;break;
-        }
-    }
-    
-    lowerPriority(){
-        switch(this.priority){
-            case TaskPriority.MEDIUM: this.priority=TaskPriority.LOW;break;
-            case TaskPriority.HIGH: this.priority=TaskPriority.MEDIUM;break;
-        }
-    }
+  }
+
+  raisePriority(): void {
+    if (this.priority === TaskPriority.HIGH) return; // Ya está en el nivel más alto
+    this.priority =
+      this.priority === TaskPriority.LOW
+        ? TaskPriority.MEDIUM
+        : TaskPriority.HIGH;
+  }
+
+  lowerPriority(): void {
+    if (this.priority === TaskPriority.LOW) return; // Ya está en el nivel más bajo
+    this.priority =
+      this.priority === TaskPriority.HIGH
+        ? TaskPriority.MEDIUM
+        : TaskPriority.LOW;
+  }
 
     changeStatus(){
         switch(this.status){
@@ -74,4 +75,6 @@ export class Task {
 
         }
     }
+
+
 }

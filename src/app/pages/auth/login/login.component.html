@@ -1,32 +1,65 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <h1 class="text-center mt-5"> BIENVENIDO A TASKMANAGER</h1>
-  <form [formGroup]="formLogin" (ngSubmit)="Onsubmit()">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" [ngClass]="{'is-valid': formLogin.get('email')?.valid && formLogin.get('email')?.touched, 'is-invalid': formLogin.get('email')?.invalid && formLogin.get('email')?.touched}">
-      <div class="invalid-feedback" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
-        <small *ngIf="formLogin.get('email')?.hasError('required')">El email es obligatorio.</small>
-        <small *ngIf="formLogin.get('email')?.hasError('email')">email invalido.</small>
+<div class="container d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
+  <div class="card shadow-lg p-4" style="width: 30rem;">
+    <h1 class="text-center mb-4">BIENVENIDO A TASKMANAGER</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="Onsubmit()">
+      <!-- Campo Email -->
+      <div class="form-group mb-3">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          formControlName="email"
+          [ngClass]="{
+            'is-valid': formLogin.get('email')?.valid && formLogin.get('email')?.touched,
+            'is-invalid': formLogin.get('email')?.invalid && formLogin.get('email')?.touched
+          }">
+        <div class="invalid-feedback" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
+          <small *ngIf="formLogin.get('email')?.hasError('required')">El email es obligatorio.</small>
+          <small *ngIf="formLogin.get('email')?.hasError('email')">Email invalido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password" [ngClass]="{'is-valid': formLogin.get('password')?.valid && formLogin.get('password')?.touched, 'is-invalid': formLogin.get('password')?.invalid && formLogin.get('password')?.touched}">
-      <div class="invalid-feedback" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
-        <small *ngIf="formLogin.get('password')?.hasError('required')">El password es obligatorio.</small>
-        <small *ngIf="formLogin.get('password')?.hasError('minlength')">El password debe tener al menos 6 caracteres.</small>
-      </div>
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <div class="d-flex justify-content-center">
-      <button (click)="loginWithGoogle()" class="btn btn-primary"><i class="bi bi-google m-1"></i>Login with Google</button>
-    </div>
-  </form>
 
+      <!-- Campo Password -->
+      <div class="form-group mb-3">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="{
+            'is-valid': formLogin.get('password')?.valid && formLogin.get('password')?.touched,
+            'is-invalid': formLogin.get('password')?.invalid && formLogin.get('password')?.touched
+          }">
+        <div class="invalid-feedback" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+          <small *ngIf="formLogin.get('password')?.hasError('required')">El password es obligatorio.</small>
+          <small *ngIf="formLogin.get('password')?.hasError('minlength')">El password debe tener al menos 6 caracteres.</small>
+        </div>
+      </div>
+
+      <!-- Check -->
+      <div class="form-group form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+
+      <!-- Botón Submit -->
+      <div class="d-flex justify-content-center mb-3">
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </div>
+
+      <!-- Botón Google Login -->
+      <div class="d-flex justify-content-center">
+        <button (click)="loginWithGoogle()" class="btn btn-danger w-100">
+          <i class="bi bi-google m-1"></i>Login with Google
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 <app-footer></app-footer>

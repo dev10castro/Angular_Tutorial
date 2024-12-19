@@ -24,11 +24,14 @@ export class TasklistComponent implements OnInit{
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.loadTasks();
+    this.taskService.getTasksAll().subscribe(tasks => {
+      console.log('Tareas recibidas:', tasks);
+      this.tasks = tasks;
+    });
   }
 
   loadTasks(): void {
-    this.tasks = this.taskService.getTasks(); // Sincroniza la lista con el servicio
+    this.tasks = this.taskService.getTasks();
   }
 
   editTask(task:Task){

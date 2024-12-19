@@ -5,11 +5,13 @@ import {customValidator, customvalidatorPriority} from './taskform.validators';
 import {Task, TaskPriority, TaskStatus} from '../../models/task.model';
 import {TaskService} from '../../../service/task.service';
 import {Route, Router} from '@angular/router';
+import {NavbarComponent} from '../../navbar/navbar.component';
+import {FooterComponent} from '../../footer/footer.component';
 
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent, FooterComponent,],
   templateUrl: './taskform.component.html',
   styleUrl: './taskform.component.css'
 })
@@ -46,8 +48,8 @@ export class TaskformComponent implements OnChanges{
         const description = this.formTaskEdit.get('description')?.value;
         const priority: TaskPriority = this.formTaskEdit.get('priority')?.value;
         const status: TaskStatus = TaskStatus.PENDING;
-        const creationDate: Date = new Date();
-        const expirationDate: Date = this.formTaskEdit.get('expireDate')?.value;
+        const creationDate: string = new Date().toDateString();
+        const expirationDate: string = this.formTaskEdit.get('expireDate')?.value;
         const idDelete: boolean = false;
 
         // Crear nueva instancia de Task
@@ -80,7 +82,7 @@ export class TaskformComponent implements OnChanges{
           name:this.taskInput.name,
           description:this.taskInput.description,
           priority:this.taskInput.priority,
-          expireDate: this.taskInput.expirationDate.toISOString().slice(0, 16),
+          expireDate: this.taskInput.expirationDate.toString().slice(0, 16),
 
         })
       }
