@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Task, TaskPriority, TaskStatus} from '../components/models/task.model';
 import {TaskEvent} from '../components/models/TaskEvent.model';
+import { Database, ref, listVal } from '@angular/fire/database';
+import {map, Observable} from 'rxjs';
 
 
 @Injectable({
@@ -21,7 +23,7 @@ export class TaskService {
     new Task(10, "Desplegar en producción", "Realizar el despliegue de la aplicación", TaskPriority.HIGH, TaskStatus.COMPLETED, new Date("2024-10-05"), new Date("2024-10-25"), false),
   ];
 
-  constructor() { }
+  constructor(private database:Database) { }
 
 
   getTasks(): Task[] {
@@ -112,6 +114,11 @@ export class TaskService {
    return this.taskList.filter((task1:Task)=>{
       return taskId==task1.id;
     })
+  }
+
+  getTasksAll(): Observable<Task[]> {
+    const taskRef = ref(this.database, "taskList");
+    return listVal(taskRef) as Observable<Task[]>;
   }
 
 }
